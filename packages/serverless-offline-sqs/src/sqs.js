@@ -168,8 +168,7 @@ class SQS {
         })
         .promise();
     } catch (err) {
-      if (remainingTry > 0 && err.name === 'AWS.SimpleQueueService.NonExistentQueue')
-        return this._createQueue({queueName}, remainingTry - 1);
+      if (remainingTry > 0) return this._createQueue({queueName}, remainingTry - 1);
       log.warning(err.stack);
     }
   }
